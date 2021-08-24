@@ -58,8 +58,8 @@
                 <h1>FizzBuzz: A Coding Project</h1>
                 <h4 class="lead">When it counts you Fizz Buzz. A javascript coding exercise using loops.
                     Write a program that prints the numbers from 1 to 100 and for multiples of '3' display
-                    "Fizz" instead of the number and for multiples of '5' display "Buzz", if a multiple of both
-                    display "FizzBuzz".
+                    <strong>"Fizz"</strong>  instead of the number and for multiples of '5' display <strong>"Buzz"</strong>,
+                    if a multiple of both display <strong>"FizzBuzz"</strong>.
                  </h4>
 
                  <h1 class="mt-5">Instructions</h1>
@@ -87,7 +87,15 @@
                     <table class="table table-striped table-sm">
                         <tbody id="results">
                             <!-- Results go here -->
-
+                            <template id="fbTemplate">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </template>
                         </tbody>
                     </table>
                 </div>
@@ -120,6 +128,8 @@
         </div>
     </div>
 </footer>
+
+
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"

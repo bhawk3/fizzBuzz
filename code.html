@@ -59,17 +59,104 @@
         <div class="row row-cols-1 row-cols-lg-2">
             <div class="col-lg-8">
                 <pre class="line-numbers"> <code class="language-javascript">
-                    // Call Hello World
-                    function HelloWorld() {
-                        alert("Hello World");
-                    }
+//Get values from the UI
+//This is the controller function
+function getValues() {
+
+    //Get values from page
+    let startValue = document.getElementById("startValue").value;
+    let endValue = document.getElementById("endValue").value;
+
+    //validate the values as integers
+    //parse into integers
+    startValue = parseInt(startValue);
+    endValue = parseInt(endValue);
+
+    //validating
+    if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+        //Call generateNumbers function
+        let numbers = generateNumbers(startValue, endValue);
+        
+        //Call displayNumbers function to display the values from the generateNumbers function
+        displayNumbers(numbers);
+    } else {
+        alert("You must enter integers");
+    }
+}
+
+//Generate numbers from start value to the end value
+//This is the logic functions
+function generateNumbers(sValue, eValue) {
+    let numbers = [];
+
+    //Get all numbers from start to end with for loop
+    for (let i = sValue; i <= eValue; i++) {
+        //This will execute in a loop until index = eValue
+        numbers.push(i);   
+    }
+    return numbers;
+}
+
+//Display the numbers and display fizz for multiples of 3 and buzz for multiples of 5 and fizzbuzz for multiples of 3,5
+//This is the view functions
+function displayNumbers(numbers) {
+
+    let templateRows = "";
+
+   for (let index = 1; index < numbers.length; index++) {
+       let multiple3 = false;
+       let multiple5 = false;
+
+       let number = numbers[index];
+        //logic for finding multiples of 3, 5, and if its a multiple of both
+
+        if (number % 3 == 0 && number % 5 == 0) {
+            multiple3 = true;
+            multiple5 = true;
+            number = "FizzBuzz";
+        } else if (number % 3 == 0) {
+            multiple3 = true;
+            number = "Fizz";
+        } else if (number % 5 == 0) {
+            multiple5 = true;
+            number = "Buzz";
+        } 
+        templateRows += `<tr><td class="${multiple3}, ${multiple5}">${number}</td></tr>`;
+       }
+    document.getElementById("results").innerHTML = templateRows;  
+  }
                 </code>
                 </pre>
             </div>
             <div class="col-lg-4">
-                <p> The Code is structured in one function.</p>
-                <h5>Hello World</h5>
-                <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                <h3>Code explaination to the FizzBuzz Project</h3>
+
+                <!-- name of function -->
+                <h5 class="mt-4">getValues Function</h5>
+                <p>I first set the inputs from the startValue and endValue text boxes equal to their own variables. 
+                    Then I parsed them into integers because they were strings initially. I then validated that they were in fact 
+                    integers and if they were I set the generateNumbers function equal to the var of numbers and also called the function
+                    displayNumbers. If they weren't integers it will through an alert message asking for integers to the user.
+                </p>
+
+                <!-- name of function -->
+                <h5 class="mt-4">generateNumbers Function</h5>
+                <p>This function has parameters of sValue and eValue. I set numbers equal to an empty array. Next I created 
+                    a for loop and set i = sValue and then when i was <= the eValue i++ and if that was true I set
+                    the numbers array to push the i. Lastly, I had the numbers array return.
+                </p>
+
+                <!-- name of function -->
+                <h5 class="mt-4">displayNumbers Function</h5>
+                <p>I created the displayNumbers function with a parameter of numbers so that it would call the info from the generateNumbers function.
+                    I set the templateRows var equal to an empty string. Next, I created a for loop and set the i = 1 and said when i < number.length that i++.
+                    If that condition is true then set the multiple3 and multiple5 = false and set the var of number = to numbers[i].
+                    I then created an if statement two nested if statements. The first if statement says if number % 3 == 0 and number % 5 == 0
+                    then multiple3 and multiple5 = true and number = the string "FizzBuzz". The second if statement is if number % 3 == 0 then 
+                    multiple3 = true and number = the string "Fizz". The last if statement says if number % 5 == 0 then multiple5 = true and number is equal to the string of 
+                    "Buzz". I then set the templateRows += to a template literal of the var number. Lastly, I inputed the data output
+                    equal to the table in the html.
+                </p>
             </div>
         </div>
     </div>
